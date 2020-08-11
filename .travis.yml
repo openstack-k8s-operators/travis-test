@@ -2,5 +2,18 @@ language: shell
 
 sudo: false
 
-script:
-  - echo 'Build starts!!'
+git:
+  depth: 2
+
+branches:
+  only: 
+    - master
+
+jobs:
+  exclude:
+    - if: type = pull_request
+  include:
+    - stage: Test merge request
+      script:
+        - echo 'Build starts!!'
+
