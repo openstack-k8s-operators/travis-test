@@ -1,0 +1,6 @@
+language: shell
+
+sudo: false
+
+script:
+  - echo 'Build starts!!'
