@@ -1,14 +1,14 @@
 pipeline {
     agent none
     stages {
-        stage('Run PR jobs') {
+        stage('Run when pull request is proposed') {
         when {
             branch 'PR-*'
         }
             parallel {
-                stage('DFG-converged-openstack-k8s') {
+                stage('DFG-converged-openstack-k8s-travis-test-distgit-pr') {
                     steps {
-                        build job: 'DFG-converged-openstack-k8s',
+                        build job: 'DFG-converged-openstack-k8s-travis-test-distgit-pr',
                                   parameters: [
                                       string(name: 'GITHUB_PULL_REQUEST_ID', value: String.valueOf(CHANGE_ID))
                                   ]
@@ -24,7 +24,7 @@ pipeline {
             }
         }
         steps {
-            build job: 'DFG-converged-openstack-k8s'
+            build job: 'DFG-converged-openstack-k8s-travis-test-merge'
         }
         }
     }
